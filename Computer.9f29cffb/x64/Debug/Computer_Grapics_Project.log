@@ -1,0 +1,19 @@
+﻿  Camera.cpp
+  Camera1.cpp
+  Circle.cpp
+C:\Users\장윤서\source\repos\ComputerGraphics\Circle.cpp(62,48): warning C4267: '인수': 'size_t'에서 'GLsizei'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CPyramidPart.cpp
+  CRobot.cpp
+  Cube.cpp
+  CubePart.cpp
+  KeyMgr.cpp
+  Line.cpp
+  main.cpp
+C:\Users\장윤서\source\repos\ComputerGraphics\main.cpp(56,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\Users\장윤서\source\repos\ComputerGraphics\main.cpp(207,12): warning C4101: 'Rot' :참조되지 않은 지역 변수입니다.
+C:\Users\장윤서\source\repos\ComputerGraphics\main.cpp(422,20): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+  Obj.cpp
+  Pyramid.cpp
+  SkyBox.cpp
+  코드를 생성하고 있습니다...
+  Computer_Grapics_Project.vcxproj -> C:\Users\장윤서\Source\Repos\ComputerGraphics\x64\Debug\Computer_Grapics_Project.exe

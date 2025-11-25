@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Shader">
+      <UniqueIdentifier>{a2f0ef70-c34f-4d8c-a05a-9ff0fa4c84c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape">
+      <UniqueIdentifier>{81b7b627-7cb2-4c52-b2d2-e375321564f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape\Cube">
+      <UniqueIdentifier>{fb9bccb9-f801-41fb-af4f-2c6f55792ef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape\Pyramid">
+      <UniqueIdentifier>{ede47be8-0950-4d24-bedf-51946187187c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape\Cube\PArt">
+      <UniqueIdentifier>{9f0714b4-27c9-447a-b62a-f8093f7bf29e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Camera">
+      <UniqueIdentifier>{cb34686c-9512-44cb-859d-7758839b6828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape\Line">
+      <UniqueIdentifier>{d3e65d41-c996-479d-9400-39700d77b41b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape\Pyramid\Part">
+      <UniqueIdentifier>{8faef6ed-7dea-415a-9996-1873b8af6667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\KeyMgr">
+      <UniqueIdentifier>{60959259-c61b-42a8-a3fd-13a2fe4034dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape\Obj">
+      <UniqueIdentifier>{f0466270-efc4-4134-b8f8-9453b3afc60d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape\Circle">
+      <UniqueIdentifier>{73289fbd-70f8-4119-9332-a0d590aedb5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape\SkyBox">
+      <UniqueIdentifier>{2dece5c2-a82d-4b10-86de-a1bc95f90107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Shape\Robot">
+      <UniqueIdentifier>{148e6e21-291b-4577-945e-35f01dbd6539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Camera\3rd">
+      <UniqueIdentifier>{103c98ee-cf19-4e81-89c4-38f7aee7742d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Camera\1st">
+      <UniqueIdentifier>{e5ebbbac-5072-471b-b5b5-bbc52ad2155a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Default.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>소스 파일\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>소스 파일\Shape\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="Pyramid.h">
+      <Filter>소스 파일\Shape\Pyramid</Filter>
+    </ClInclude>
+    <ClInclude Include="CubePart.h">
+      <Filter>소스 파일\Shape\Cube\PArt</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>소스 파일\Shape\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="CPyramidPart.h">
+      <Filter>소스 파일\Shape\Pyramid\Part</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMgr.h">
+      <Filter>소스 파일\KeyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>소스 파일\Shape\Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>소스 파일\Shape\Circle</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBox.h">
+      <Filter>소스 파일\Shape\SkyBox</Filter>
+    </ClInclude>
+    <ClInclude Include="CRobot.h">
+      <Filter>소스 파일\Shape\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>소스 파일\Camera\3rd</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera1.h">
+      <Filter>소스 파일\Camera\1st</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>소스 파일\Shape\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="Pyramid.cpp">
+      <Filter>소스 파일\Shape\Pyramid</Filter>
+    </ClCompile>
+    <ClCompile Include="CubePart.cpp">
+      <Filter>소스 파일\Shape\Cube\PArt</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>소스 파일\Shape\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="CPyramidPart.cpp">
+      <Filter>소스 파일\Shape\Pyramid\Part</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMgr.cpp">
+      <Filter>소스 파일\KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>소스 파일\Shape\Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>소스 파일\Shape\Circle</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBox.cpp">
+      <Filter>소스 파일\Shape\SkyBox</Filter>
+    </ClCompile>
+    <ClCompile Include="CRobot.cpp">
+      <Filter>소스 파일\Shape\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>소스 파일\Camera\3rd</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera1.cpp">
+      <Filter>소스 파일\Camera\1st</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragment.glsl">
+      <Filter>소스 파일\Shader</Filter>
+    </None>
+    <None Include="vertex.glsl">
+      <Filter>소스 파일\Shader</Filter>
+    </None>
+  </ItemGroup>
+</Project>
