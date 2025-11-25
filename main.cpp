@@ -3,6 +3,8 @@
 #include "Camera.h"
 #include "KeyMgr.h"
 
+// À±¼­ ºê·»Ä¡ Å×½ºÆ®
+
 char* filetobuf(const char* file);
 void make_vertexShaders();
 void make_fragmentShaders();
