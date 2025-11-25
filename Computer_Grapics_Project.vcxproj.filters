@@ -22,32 +22,17 @@
     <Filter Include="소스 파일\Shape\Cube">
       <UniqueIdentifier>{fb9bccb9-f801-41fb-af4f-2c6f55792ef1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Shape\Pyramid">
-      <UniqueIdentifier>{ede47be8-0950-4d24-bedf-51946187187c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Shape\Cube\PArt">
       <UniqueIdentifier>{9f0714b4-27c9-447a-b62a-f8093f7bf29e}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Camera">
       <UniqueIdentifier>{cb34686c-9512-44cb-859d-7758839b6828}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Shape\Line">
-      <UniqueIdentifier>{d3e65d41-c996-479d-9400-39700d77b41b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Shape\Pyramid\Part">
-      <UniqueIdentifier>{8faef6ed-7dea-415a-9996-1873b8af6667}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\KeyMgr">
       <UniqueIdentifier>{60959259-c61b-42a8-a3fd-13a2fe4034dc}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Shape\Obj">
       <UniqueIdentifier>{f0466270-efc4-4134-b8f8-9453b3afc60d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Shape\Circle">
-      <UniqueIdentifier>{73289fbd-70f8-4119-9332-a0d590aedb5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Shape\SkyBox">
-      <UniqueIdentifier>{2dece5c2-a82d-4b10-86de-a1bc95f90107}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Shape\Robot">
       <UniqueIdentifier>{148e6e21-291b-4577-945e-35f01dbd6539}</UniqueIdentifier>
@@ -69,29 +54,14 @@
     <ClInclude Include="Cube.h">
       <Filter>소스 파일\Shape\Cube</Filter>
     </ClInclude>
-    <ClInclude Include="Pyramid.h">
-      <Filter>소스 파일\Shape\Pyramid</Filter>
-    </ClInclude>
     <ClInclude Include="CubePart.h">
       <Filter>소스 파일\Shape\Cube\PArt</Filter>
-    </ClInclude>
-    <ClInclude Include="Line.h">
-      <Filter>소스 파일\Shape\Line</Filter>
-    </ClInclude>
-    <ClInclude Include="CPyramidPart.h">
-      <Filter>소스 파일\Shape\Pyramid\Part</Filter>
     </ClInclude>
     <ClInclude Include="KeyMgr.h">
       <Filter>소스 파일\KeyMgr</Filter>
     </ClInclude>
     <ClInclude Include="Obj.h">
       <Filter>소스 파일\Shape\Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="Circle.h">
-      <Filter>소스 파일\Shape\Circle</Filter>
-    </ClInclude>
-    <ClInclude Include="SkyBox.h">
-      <Filter>소스 파일\Shape\SkyBox</Filter>
     </ClInclude>
     <ClInclude Include="CRobot.h">
       <Filter>소스 파일\Shape\Robot</Filter>
@@ -110,29 +80,14 @@
     <ClCompile Include="Cube.cpp">
       <Filter>소스 파일\Shape\Cube</Filter>
     </ClCompile>
-    <ClCompile Include="Pyramid.cpp">
-      <Filter>소스 파일\Shape\Pyramid</Filter>
-    </ClCompile>
     <ClCompile Include="CubePart.cpp">
       <Filter>소스 파일\Shape\Cube\PArt</Filter>
-    </ClCompile>
-    <ClCompile Include="Line.cpp">
-      <Filter>소스 파일\Shape\Line</Filter>
-    </ClCompile>
-    <ClCompile Include="CPyramidPart.cpp">
-      <Filter>소스 파일\Shape\Pyramid\Part</Filter>
     </ClCompile>
     <ClCompile Include="KeyMgr.cpp">
       <Filter>소스 파일\KeyMgr</Filter>
     </ClCompile>
     <ClCompile Include="Obj.cpp">
       <Filter>소스 파일\Shape\Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="Circle.cpp">
-      <Filter>소스 파일\Shape\Circle</Filter>
-    </ClCompile>
-    <ClCompile Include="SkyBox.cpp">
-      <Filter>소스 파일\Shape\SkyBox</Filter>
     </ClCompile>
     <ClCompile Include="CRobot.cpp">
       <Filter>소스 파일\Shape\Robot</Filter>
