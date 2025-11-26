@@ -146,6 +146,25 @@ GLvoid drawScene(GLvoid)
 	glClearColor(1.f, 1.f, 1.f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+<<<<<<< Updated upstream
+=======
+	//테스트용 큐브 및 전역 조명 생성
+	glUseProgram(shaderProgramID);
+
+	glUniform3f(glGetUniformLocation(shaderProgramID, "objectColor"), 0.0f, 1.0f, 0.0f); 
+	CLight::GetInstance()->ApplyAmbient(shaderProgramID);
+
+	glm::mat4 model = glm::mat4(1.0f);  
+	glm::mat4 view = CCamera::GetInstance()->GetMatView();
+	glm::mat4 projection = CCamera::GetInstance()->GetMatProj();
+
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+	if (gCube)
+		gCube->Draw();
+>>>>>>> Stashed changes
 
 	glutSwapBuffers();
 }
@@ -162,6 +181,19 @@ void KeyInput(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
+<<<<<<< Updated upstream
+=======
+		//테스트용 명령어
+	case 'm':  
+		CLight::GetInstance()->ToggleLight();
+		break;
+	case '+':  
+		CLight::GetInstance()->SetAmbientStrength(0.6f);
+		break;
+	case '-':  
+		CLight::GetInstance()->SetAmbientStrength(0.1f);
+		break;
+>>>>>>> Stashed changes
 	case 'q':
 		glutLeaveMainLoop();
 		return;
@@ -209,4 +241,13 @@ void Animation(int value)
 void Initial()
 {
 	CCamera::GetInstance()->Initial();
+<<<<<<< Updated upstream
+=======
+	CLight::GetInstance()->Init();
+
+	//테스트용 큐브 init
+	gCube = new CCube();
+	gCube->Initialize(glm::vec3(0.0f, 0.0f, 0.0f), shaderProgramID);
+	gCube->SetColor(1.0f, 0.0f, 0.0f);
+>>>>>>> Stashed changes
 }
