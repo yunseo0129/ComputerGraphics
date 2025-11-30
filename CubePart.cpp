@@ -1,6 +1,5 @@
 #include "CubePart.h"
 #include "Camera.h"
-#include "Camera1.h"
 
 CCubePart::CCubePart()
 {
@@ -173,12 +172,7 @@ void CCubePart::Draw()
     // 3. ±×¸®±â
     glUseProgram(shaderProgramID);
     glm::mat4 MVP;
-    if (CCamera::GetInstance()->GetMini())
-		MVP = CCamera::GetInstance()->GetMatProjView() * *MatParent * MatWorld;
-    else if (CCamera1::GetInstance()->GetEnable())
-        MVP = CCamera1::GetInstance()->GetMatProjView() * *MatParent * MatWorld;
-    else
-        MVP = CCamera::GetInstance()->GetMatProjView() * *MatParent * MatWorld;
+    MVP = CCamera::GetInstance()->GetMatProjView() * *MatParent * MatWorld;
 
     GLuint locMVP = glGetUniformLocation(shaderProgramID, "MVP");
     glUniformMatrix4fv(locMVP, 1, GL_FALSE, glm::value_ptr(MVP));

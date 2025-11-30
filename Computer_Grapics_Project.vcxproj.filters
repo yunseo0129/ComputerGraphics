@@ -40,8 +40,8 @@
     <Filter Include="소스 파일\Camera\3rd">
       <UniqueIdentifier>{103c98ee-cf19-4e81-89c4-38f7aee7742d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Camera\1st">
-      <UniqueIdentifier>{e5ebbbac-5072-471b-b5b5-bbc52ad2155a}</UniqueIdentifier>
+    <Filter Include="소스 파일\Light">
+      <UniqueIdentifier>{013a03f1-dec6-4163-91a8-6b2e9e5593a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,8 +69,8 @@
     <ClInclude Include="Camera.h">
       <Filter>소스 파일\Camera\3rd</Filter>
     </ClInclude>
-    <ClInclude Include="Camera1.h">
-      <Filter>소스 파일\Camera\1st</Filter>
+    <ClInclude Include="CLight.h">
+      <Filter>소스 파일\Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -95,8 +95,8 @@
     <ClCompile Include="Camera.cpp">
       <Filter>소스 파일\Camera\3rd</Filter>
     </ClCompile>
-    <ClCompile Include="Camera1.cpp">
-      <Filter>소스 파일\Camera\1st</Filter>
+    <ClCompile Include="CLight.cpp">
+      <Filter>소스 파일\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
