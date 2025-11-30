@@ -25,8 +25,8 @@ GLuint fragmentShader;
 int WinSizeX = 800;
 int WinSizeY = 600;
 
-//테스트용 큐브
-CCube* gCube = nullptr;
+CShape* gMap = nullptr;
+vector<CShape*> vecCube;
 
 void main(int argc, char** argv)
 {
@@ -162,8 +162,9 @@ GLvoid drawScene(GLvoid)
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "view"), 1, GL_FALSE, glm::value_ptr(view));
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-	if (gCube)
-		gCube->Draw();
+	if (gMap != nullptr)
+		gMap->Draw();
+
 
 	glutSwapBuffers();
 }
@@ -238,7 +239,7 @@ void Initial()
 	CCamera::GetInstance()->Initial();
 	CLight::GetInstance()->Init();
 
-	gCube = new CCube();
-	gCube->Initialize(glm::vec3(0.0f, 0.0f, 0.0f), shaderProgramID);
-	gCube->SetColor(1.0f, 0.0f, 0.0f);
+	gMap = new CCube();
+	gMap->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);
+	gMap->SetScale(50.f, 1.f, 50.f);
 }
