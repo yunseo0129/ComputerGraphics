@@ -2,9 +2,7 @@
 #include "Cube.h"
 #include "Camera.h"
 #include "KeyMgr.h"
-//test
-
-// 윤서 브렌치 테스트
+#include "CLight.h"
 
 char* filetobuf(const char* file);
 void make_vertexShaders();
@@ -26,6 +24,9 @@ GLuint fragmentShader;
 
 int WinSizeX = 800;
 int WinSizeY = 600;
+
+//테스트용 큐브
+CCube* gCube = nullptr;
 
 void main(int argc, char** argv)
 {
@@ -51,7 +52,7 @@ void main(int argc, char** argv)
 
 	glutDisplayFunc(drawScene);
 	glutReshapeFunc(Reshape);
-	glClearColor(0.f, 0.f, 0.f, 0.f);
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
 	glutKeyboardFunc(KeyInput);
 	glutKeyboardUpFunc(KeyUp);
@@ -145,9 +146,24 @@ GLuint make_shaderProgram()
 
 GLvoid drawScene(GLvoid)
 {
-	glClearColor(1.f, 1.f, 1.f, 1.f);
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glUseProgram(shaderProgramID);
+
+	glUniform3f(glGetUniformLocation(shaderProgramID, "objectColor"), 0.0f, 1.0f, 0.0f); // 초록색
+	CLight::GetInstance()->ApplyAmbient(shaderProgramID);
+
+	glm::mat4 model = glm::mat4(1.0f);  
+	glm::mat4 view = CCamera::GetInstance()->GetMatView();
+	glm::mat4 projection = CCamera::GetInstance()->GetMatProj();
+
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+	if (gCube)
+		gCube->Draw();
 
 	glutSwapBuffers();
 }
@@ -164,6 +180,15 @@ void KeyInput(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
+	case 'm':  
+		CLight::GetInstance()->ToggleLight();
+		break;
+	case '+':  
+		CLight::GetInstance()->SetAmbientStrength(0.6f);
+		break;
+	case '-':  
+		CLight::GetInstance()->SetAmbientStrength(0.1f);
+		break;
 	case 'q':
 		glutLeaveMainLoop();
 		return;
@@ -211,4 +236,9 @@ void Animation(int value)
 void Initial()
 {
 	CCamera::GetInstance()->Initial();
+	CLight::GetInstance()->Init();
+
+	gCube = new CCube();
+	gCube->Initialize(glm::vec3(0.0f, 0.0f, 0.0f), shaderProgramID);
+	gCube->SetColor(1.0f, 0.0f, 0.0f);
 }
