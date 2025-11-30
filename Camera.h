@@ -38,6 +38,6 @@ private:
 	glm::vec3 vRight = glm::vec3(1.f, 0.f, 0.f);
 	glm::vec3 vUp = glm::vec3(0.f, 1.f, 0.f);
 	glm::vec3 vLook = glm::vec3(0.f, 0.f, -1.f);
-	glm::mat4 MatProj; // Åõ¿µ
-	glm::mat4 MatView; // ºä
+	glm::mat4 MatProj = glm::mat4(1.f); // Åõ¿µ
+	glm::mat4 MatView = glm::mat4(1.f); // ºä
 };

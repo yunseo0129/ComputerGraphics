@@ -35,7 +35,6 @@ void CCamera::UpdateView()
 void CCamera::Initial()
 {
     UpdateProjection(800, 600);
-    // √ ±‚»≠
     UpdateView();
 }
 
