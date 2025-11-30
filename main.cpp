@@ -227,8 +227,8 @@ void DragInput(int x, int y)
 
 void Animation(int value)
 {
-	CCamera::GetInstance()->UpdateView();
 	CKeyMgr::Get_Instance()->Key_Update();
+	CCamera::GetInstance()->UpdateView();
 
 	glutPostRedisplay();
 	glutTimerFunc(10, Animation, value);
