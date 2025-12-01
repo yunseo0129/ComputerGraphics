@@ -36,10 +36,14 @@ void CCamera::Initial()
 {
     UpdateProjection(800, 600);
     UpdateView();
+	MatProjOrthor = glm::ortho(-4.f, 4.f, -3.f, 3.f, 0.1f, 100.f);
+	MatViewOrthor = glm::lookAt(glm::vec3(0.f, 10.f, 0.f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, -1.f));
 }
 
 glm::mat4 CCamera::GetMatProjView() const
 {
+    if (UIMode)
+		return MatProjOrthor * MatViewOrthor;
     return MatProj * MatView;
 }
 

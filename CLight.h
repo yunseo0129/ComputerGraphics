@@ -1,6 +1,5 @@
 #pragma once
-#include <gl/glm/glm.hpp>
-#include <GL/glew.h>
+#include "Default.h"
 
 class CLight {
 public:

@@ -25,10 +25,6 @@ void CCube::Initialize(glm::vec3 _pos, int _shaderID)
     for (int i = 0; i < 6; ++i)
     {
         CCubePart* p = new CCubePart;
-        if (isRobotPart)
-        {
-            p->SetMap(false);
-        }
         p->Initialize(eCUBEPOS(i), &MatWorld, _shaderID);
         vecPart.push_back(p);
     }

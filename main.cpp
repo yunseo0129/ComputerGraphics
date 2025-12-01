@@ -26,6 +26,7 @@ int WinSizeX = 800;
 int WinSizeY = 600;
 
 CShape* gMap = nullptr;
+CShape* gAim = nullptr;
 vector<CShape*> vecCube;
 
 void main(int argc, char** argv)
@@ -151,19 +152,16 @@ GLvoid drawScene(GLvoid)
 
 	glUseProgram(shaderProgramID);
 
-	glUniform3f(glGetUniformLocation(shaderProgramID, "objectColor"), 0.0f, 1.0f, 0.0f); // ÃÊ·Ï»ö
-	CLight::GetInstance()->ApplyAmbient(shaderProgramID);
-
-	glm::mat4 model = glm::mat4(1.0f);  
-	glm::mat4 view = CCamera::GetInstance()->GetMatView();
-	glm::mat4 projection = CCamera::GetInstance()->GetMatProj();
-
-	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "view"), 1, GL_FALSE, glm::value_ptr(view));
-	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	//CLight::GetInstance()->ApplyAmbient(shaderProgramID);
 
 	if (gMap != nullptr)
 		gMap->Draw();
+
+	// ui
+	CCamera::GetInstance()->UiModeOn();
+	if (gAim != nullptr)
+		gAim->Draw();
+	CCamera::GetInstance()->UiModeOff();
 
 	glutSwapBuffers();
 }
@@ -229,6 +227,8 @@ void Animation(int value)
 	CKeyMgr::Get_Instance()->Key_Update();
 	CCamera::GetInstance()->UpdateView();
 
+	gMap->Update();
+
 	glutPostRedisplay();
 	glutTimerFunc(10, Animation, value);
 }
@@ -237,9 +237,16 @@ void Initial()
 {
 	CCamera::GetInstance()->Initial();
 	CLight::GetInstance()->Init();
+	while (ShowCursor(FALSE) >= 0);
 
 	gMap = new CCube();
-	gMap->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);
-	gMap->SetScale(50.f, 1.f, 50.f);
-	static_cast<CCube*>(gMap)->SetColor(0.5f, 0.5f, 0.5f);
+	gMap->Initialize(glm::vec3(0.f, -1.f, 0.f), shaderProgramID);
+	gMap->SetScale(16.f, 1.f, 16.f);
+	static_cast<CCube*>(gMap)->SetColor(0.8f, 0.8f, 0.8f);
+
+	gAim = new CCube();
+	gAim->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);
+	gAim->SetScale(0.05f, 0.05f, 0.05f);
+	static_cast<CCube*>(gAim)->SetColor(1.f, 1.f, 1.f);
+	gAim->Update();
 }

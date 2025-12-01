@@ -1,20 +1,8 @@
 #version 330 core
-
-in vec3 Normal;
-
+in vec3 vColor;
 out vec4 FragColor;
 
-uniform vec3 objectColor;
-uniform vec3 lightColor;
-uniform float ambientStrength;
-uniform bool lightOn;
-
-void main()
+void main() 
 {
-    vec3 result = vec3(0.0);
-    if (lightOn) {
-        vec3 ambient = ambientStrength * lightColor;
-        result = ambient * objectColor;
-    }
-    FragColor = vec4(result, 1.0);
+    FragColor = vec4(vColor, 1.0);
 }

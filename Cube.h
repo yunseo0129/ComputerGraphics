@@ -14,12 +14,8 @@ public:
 	virtual void Update();
 
 	void SetColor(float r, float g, float b);
-	void SetBlock() { isBlock = true; }
-	void SetRobotPart() { isRobotPart = true; }
 
 private:
-	bool isBlock = false;
-	bool isRobotPart = false;
 	GLuint VAO, VBO, EBO;
 	vector<CCubePart*> vecPart;
 };

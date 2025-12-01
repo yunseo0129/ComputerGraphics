@@ -21,6 +21,8 @@ public:
 	void UpdateProjection(float w, float h);
 	void UpdateView();
 	void Initial();
+	void UiModeOn() { UIMode = true; }
+	void UiModeOff() { UIMode = false; }
 	
 	glm::mat4 GetMatProj() const { return MatProj; }
 	glm::mat4 GetMatView() const { return MatView; }
@@ -31,6 +33,7 @@ private:
 
 private:
 	static CCamera* Instance;
+	bool UIMode = false;
 	float yaw = 0.f;
 	float pitch = 0.f;
 	float cameraSpeed = 0.05f; // 카메라 이동 속도
@@ -40,6 +43,8 @@ private:
 	glm::vec3 vRight = glm::vec3(1.f, 0.f, 0.f); // 라이트벡터
 	glm::vec3 vUp = glm::vec3(0.f, 1.f, 0.f); // 업벡터
 	glm::vec3 vLook = glm::vec3(0.f, 0.f, -1.f); // 룩벡터
-	glm::mat4 MatProj = glm::mat4(1.f); // 투영
-	glm::mat4 MatView = glm::mat4(1.f); // 뷰
+	glm::mat4 MatProj = glm::mat4(1.f); // 원근투영
+	glm::mat4 MatView = glm::mat4(1.f); // 원근뷰
+	glm::mat4 MatProjOrthor = glm::mat4(1.f); // 직교투영
+	glm::mat4 MatViewOrthor = glm::mat4(1.f); // 직교뷰
 };
