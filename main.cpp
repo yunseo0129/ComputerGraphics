@@ -26,6 +26,7 @@ int WinSizeX = 800;
 int WinSizeY = 600;
 
 CShape* gMap = nullptr;
+CShape* gCreatingBox = nullptr;
 CShape* gAim = nullptr;
 vector<CShape*> vecCube;
 
@@ -156,6 +157,8 @@ GLvoid drawScene(GLvoid)
 
 	if (gMap != nullptr)
 		gMap->Draw();
+	if (gCreatingBox != nullptr)
+		gCreatingBox->Draw();
 
 	// ui
 	CCamera::GetInstance()->UiModeOn();
@@ -227,8 +230,6 @@ void Animation(int value)
 	CKeyMgr::Get_Instance()->Key_Update();
 	CCamera::GetInstance()->UpdateView();
 
-	gMap->Update();
-
 	glutPostRedisplay();
 	glutTimerFunc(10, Animation, value);
 }
@@ -240,9 +241,16 @@ void Initial()
 	while (ShowCursor(FALSE) >= 0);
 
 	gMap = new CCube();
-	gMap->Initialize(glm::vec3(0.f, -1.f, 0.f), shaderProgramID);
+	gMap->Initialize(glm::vec3(-6.f, -1.f, -6.f), shaderProgramID);
 	gMap->SetScale(16.f, 1.f, 16.f);
-	static_cast<CCube*>(gMap)->SetColor(0.8f, 0.8f, 0.8f);
+	static_cast<CCube*>(gMap)->SetColor(1.f, 1.f, 1.f);
+	gMap->Update();
+
+	gCreatingBox = new CCube();
+	gCreatingBox->Initialize(glm::vec3(0.f, -0.99f, 0.f), shaderProgramID);
+	gCreatingBox->SetScale(4.f, 1.f, 4.f);
+	static_cast<CCube*>(gCreatingBox)->SetColor(1.f, 0.1f, 0.1f);
+	gCreatingBox->Update();
 
 	gAim = new CCube();
 	gAim->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);

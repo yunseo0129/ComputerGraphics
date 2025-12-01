@@ -39,7 +39,7 @@ private:
 	float cameraSpeed = 0.05f; // 카메라 이동 속도
 	float sensitivity = 0.1f;  // 마우스 감도
 	POINT CenterPoint = { 400, 300 }; // 마우스 고정용
-	glm::vec3 vPos = glm::vec3(0.f, 1.7f, 0.f); // 카메라 위치 벡터
+	glm::vec3 vPos = glm::vec3(2.f, 1.7f, 2.f); // 카메라 위치 벡터
 	glm::vec3 vRight = glm::vec3(1.f, 0.f, 0.f); // 라이트벡터
 	glm::vec3 vUp = glm::vec3(0.f, 1.f, 0.f); // 업벡터
 	glm::vec3 vLook = glm::vec3(0.f, 0.f, -1.f); // 룩벡터
