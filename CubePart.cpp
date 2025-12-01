@@ -157,6 +157,7 @@ void CCubePart::Draw()
         glEnableVertexAttribArray(0);
 
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(VerTex), (void*)offsetof(VerTex, color));
+
         glEnableVertexAttribArray(1);
 
         glBindVertexArray(0);

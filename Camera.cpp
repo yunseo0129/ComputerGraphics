@@ -46,7 +46,6 @@ glm::mat4 CCamera::GetMatProjView() const
 void CCamera::KeyInput()
 {
     // 키보드 입력
-    float cameraSpeed = 0.05f; // 카메라 이동 속도
 	glm::vec3 front;
 	front.x = vLook.x;
 	front.y = 0.f;
@@ -62,7 +61,6 @@ void CCamera::KeyInput()
 		vPos += glm::normalize(glm::cross(front, vUp)) * cameraSpeed;
 
     // 마우스 입력
-    float sensitivity = 0.1f;  // 마우스 감도
 	POINT currMousePos;
 	GetCursorPos(&currMousePos);
     SetCursorPos(CenterPoint.x, CenterPoint.y);

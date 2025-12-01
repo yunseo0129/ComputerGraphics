@@ -165,7 +165,6 @@ GLvoid drawScene(GLvoid)
 	if (gMap != nullptr)
 		gMap->Draw();
 
-
 	glutSwapBuffers();
 }
 
@@ -242,4 +241,5 @@ void Initial()
 	gMap = new CCube();
 	gMap->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);
 	gMap->SetScale(50.f, 1.f, 50.f);
+	static_cast<CCube*>(gMap)->SetColor(0.5f, 0.5f, 0.5f);
 }
