@@ -148,7 +148,7 @@ GLuint make_shaderProgram()
 
 GLvoid drawScene(GLvoid)
 {
-	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+	glClearColor(0.2f, 0.6f, 0.8f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(shaderProgramID);
@@ -243,13 +243,13 @@ void Initial()
 	gMap = new CCube();
 	gMap->Initialize(glm::vec3(-6.f, -1.f, -6.f), shaderProgramID);
 	gMap->SetScale(16.f, 1.f, 16.f);
-	static_cast<CCube*>(gMap)->SetColor(1.f, 1.f, 1.f);
+	static_cast<CCube*>(gMap)->SetColor(0.3f, 0.9f, 0.6f);
 	gMap->Update();
 
 	gCreatingBox = new CCube();
 	gCreatingBox->Initialize(glm::vec3(0.f, -0.99f, 0.f), shaderProgramID);
 	gCreatingBox->SetScale(4.f, 1.f, 4.f);
-	static_cast<CCube*>(gCreatingBox)->SetColor(1.f, 0.1f, 0.1f);
+	static_cast<CCube*>(gCreatingBox)->SetColor(1.f, 0.2f, 0.2f);
 	gCreatingBox->Update();
 
 	gAim = new CCube();
