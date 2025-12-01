@@ -26,7 +26,7 @@ int WinSizeX = 800;
 int WinSizeY = 600;
 
 CShape* gMap = nullptr;
-CShape* gCreatingBox = nullptr;
+CShape* gCreatingBox[16] = {};
 CShape* gAim = nullptr;
 vector<CShape*> vecCube;
 
@@ -157,8 +157,12 @@ GLvoid drawScene(GLvoid)
 
 	if (gMap != nullptr)
 		gMap->Draw();
-	if (gCreatingBox != nullptr)
-		gCreatingBox->Draw();
+	
+	for (int i = 0; i < 16; ++i)
+	{
+		if (gCreatingBox[i] != nullptr)
+			gCreatingBox[i]->Draw();
+	}
 
 	// ui
 	CCamera::GetInstance()->UiModeOn();
@@ -246,11 +250,14 @@ void Initial()
 	static_cast<CCube*>(gMap)->SetColor(0.3f, 0.9f, 0.6f);
 	gMap->Update();
 
-	gCreatingBox = new CCube();
-	gCreatingBox->Initialize(glm::vec3(0.f, -0.99f, 0.f), shaderProgramID);
-	gCreatingBox->SetScale(4.f, 1.f, 4.f);
-	static_cast<CCube*>(gCreatingBox)->SetColor(1.f, 0.2f, 0.2f);
-	gCreatingBox->Update();
+	for (int i = 0; i < 16; ++i)
+	{
+		gCreatingBox[i] = new CCube();
+		gCreatingBox[i]->Initialize(glm::vec3((float)(i / 4), -0.999f, (float)(i % 4)), shaderProgramID);
+		gCreatingBox[i]->SetScale(1.f, 1.f, 1.f);
+		static_cast<CCube*>(gCreatingBox[i])->SetColor(1.f, 0.2f, 0.2f);
+		gCreatingBox[i]->Update();
+	}
 
 	gAim = new CCube();
 	gAim->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);
