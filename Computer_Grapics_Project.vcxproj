@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -126,9 +126,9 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CLight.h" />
+    <ClInclude Include="CPuzzle.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubePart.h" />
-    <ClInclude Include="CUser.h" />
     <ClInclude Include="Default.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Shape.h" />
@@ -136,9 +136,9 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CLight.cpp" />
+    <ClCompile Include="CPuzzle.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubePart.cpp" />
-    <ClCompile Include="CUser.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

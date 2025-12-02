@@ -43,6 +43,9 @@
     <Filter Include="소스 파일\Light">
       <UniqueIdentifier>{013a03f1-dec6-4163-91a8-6b2e9e5593a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Puzzle">
+      <UniqueIdentifier>{890dcb86-9ed9-46e7-ab6f-e44cb6c76137}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Default.h">
@@ -60,17 +63,14 @@
     <ClInclude Include="KeyMgr.h">
       <Filter>소스 파일\KeyMgr</Filter>
     </ClInclude>
-    <ClInclude Include="Obj.h">
-      <Filter>소스 파일\Shape\Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="CRobot.h">
-      <Filter>소스 파일\Shape\Robot</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>소스 파일\Camera\3rd</Filter>
     </ClInclude>
     <ClInclude Include="CLight.h">
       <Filter>소스 파일\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="CPuzzle.h">
+      <Filter>소스 파일\Puzzle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,17 +86,14 @@
     <ClCompile Include="KeyMgr.cpp">
       <Filter>소스 파일\KeyMgr</Filter>
     </ClCompile>
-    <ClCompile Include="Obj.cpp">
-      <Filter>소스 파일\Shape\Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="CRobot.cpp">
-      <Filter>소스 파일\Shape\Robot</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>소스 파일\Camera\3rd</Filter>
     </ClCompile>
     <ClCompile Include="CLight.cpp">
       <Filter>소스 파일\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="CPuzzle.cpp">
+      <Filter>소스 파일\Puzzle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "KeyMgr.h"
 #include "CLight.h"
+#include "CPuzzle.h"
 
 char* filetobuf(const char* file);
 void make_vertexShaders();
@@ -27,8 +28,8 @@ int WinSizeY = 600;
 
 CShape* gMap = nullptr;
 CShape* gCreatingBox[16] = {};
+CPuzzle* gPuzzle = nullptr;
 CShape* gAim = nullptr;
-vector<CShape*> vecCube;
 
 void main(int argc, char** argv)
 {
@@ -164,6 +165,9 @@ GLvoid drawScene(GLvoid)
 			gCreatingBox[i]->Draw();
 	}
 
+	if (gPuzzle != nullptr)
+		gPuzzle->Render();
+
 	// ui
 	CCamera::GetInstance()->UiModeOn();
 	if (gAim != nullptr)
@@ -258,6 +262,9 @@ void Initial()
 		static_cast<CCube*>(gCreatingBox[i])->SetColor(1.f, 0.2f, 0.2f);
 		gCreatingBox[i]->Update();
 	}
+
+	gPuzzle = new CPuzzle();
+	gPuzzle->Initialize(shaderProgramID);
 
 	gAim = new CCube();
 	gAim->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);
