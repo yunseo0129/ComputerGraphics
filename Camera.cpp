@@ -47,6 +47,11 @@ glm::mat4 CCamera::GetMatProjView() const
     return MatProj * MatView;
 }
 
+bool CCamera::CheckCollision(const glm::vec3& nextPos)
+{
+
+}
+
 void CCamera::KeyInput()
 {
     // 키보드 입력
@@ -55,22 +60,27 @@ void CCamera::KeyInput()
 	front.y = 0.f;
 	front.z = vLook.z;
 	front = glm::normalize(front);
+	glm::vec3 nextPos = vPos;
+
     if (CKeyMgr::Get_Instance()->Key_Pressing('W'))
-        vPos += cameraSpeed * front;
+		nextPos += cameraSpeed * front;
     if (CKeyMgr::Get_Instance()->Key_Pressing('S'))
-        vPos -= cameraSpeed * front;
+		nextPos -= cameraSpeed * front;
     if (CKeyMgr::Get_Instance()->Key_Pressing('A'))
-        vPos -= glm::normalize(glm::cross(front, vUp)) * cameraSpeed;
+		nextPos -= glm::normalize(glm::cross(front, vUp)) * cameraSpeed;
     if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
-		vPos += glm::normalize(glm::cross(front, vUp)) * cameraSpeed;
+		nextPos += glm::normalize(glm::cross(front, vUp)) * cameraSpeed;
     if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
-		vPos += cameraSpeed * glm::vec3(0.f, 1.f, 0.f);
+		nextPos += cameraSpeed * glm::vec3(0.f, 1.f, 0.f);
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_LSHIFT))
 	{
-		vPos -= cameraSpeed * glm::vec3(0.f, 1.f, 0.f);
-		if (vPos.y < 1.7f)
-			vPos.y = 1.7f;
+		nextPos -= cameraSpeed * glm::vec3(0.f, 1.f, 0.f);
+		if (nextPos.y < 1.7f)
+			nextPos.y = 1.7f;
 	}
+
+	if(!CheckCollision(nextPos))
+		vPos = nextPos;
 
     // 마우스 입력
 	POINT currMousePos;
