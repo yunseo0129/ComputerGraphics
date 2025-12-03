@@ -50,7 +50,7 @@ glm::mat4 CCamera::GetMatProjView() const
 
 bool CCamera::CheckCollision(const glm::vec3& nextPos)
 {
-
+	return false;
 }
 
 void CCamera::KeyInput()

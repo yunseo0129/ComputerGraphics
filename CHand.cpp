@@ -23,11 +23,25 @@ void CHand::Update()
 {
 	if (isLClicked)
 	{
-		isLClicked = false;
+		switch (iAnimFrame)
+		{
+		case 0:
+			++iAnimFrame;
+			break;
+		default:
+			break;
+		}
 	}
 	else if (isRClicked)
 	{
-		isRClicked = false;
+		switch (iAnimFrame)
+		{
+		case 0:
+			++iAnimFrame;
+			break;
+		default:
+			break;
+		}
 	}
 
 	HandCube->Update();

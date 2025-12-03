@@ -15,5 +15,6 @@ public:
 private:
 	bool isLClicked = false;
 	bool isRClicked = false;
+	int iAnimFrame = 0;
 	CCube* HandCube;
 };
