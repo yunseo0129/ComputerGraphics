@@ -215,5 +215,9 @@ bool CPuzzle::RayAABB(const glm::vec3& O, const glm::vec3& D, const glm::vec3& B
 }
 
 const bool CPuzzle::QuizData[3][3][4][5][4] = {
+	// 2x2x2
 
+	// 3x3x3
+
+	// 4x4x4
 };
