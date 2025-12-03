@@ -352,3 +352,34 @@ void CPuzzle::level3_3()
 		}
 	}
 }
+
+bool CPuzzle::CheckCollision(const glm::vec3& camNextPos) const
+{
+	glm::vec3 camMin = camNextPos + glm::vec3(-0.4f, -1.7f, -0.4f);
+	glm::vec3 camMax = camNextPos + glm::vec3(0.4f, 0.2f, 0.4f);
+
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 5; ++j)
+		{
+			for (int k = 0; k < 4; ++k)
+			{
+				if (!Blocks[i][j][k].Exist)
+					continue;
+
+				glm::vec3 blkMin(i, j - 1, k);
+				glm::vec3 blkMax = blkMin + glm::vec3(1.0f);
+
+				if (camMax.x > blkMin.x && camMin.x < blkMax.x &&
+					camMax.y > blkMin.y && camMin.y < blkMax.y &&
+					camMax.z > blkMin.z && camMin.z < blkMax.z)
+				{
+					return true; 
+				}
+			}
+		}
+	}
+
+	return false; 
+}
+

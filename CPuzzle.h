@@ -31,6 +31,8 @@ public:
 	void LevelSet(int level);
 	void Click(bool isR) { isR ? isRClicked = true : isLClicked = true; }
 
+	bool CheckCollision(const glm::vec3& camNextPos) const;
+
 private:
 	void Collision(bool isDel);
 	bool RayAABB(const glm::vec3& O, const glm::vec3& D,

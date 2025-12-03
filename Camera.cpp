@@ -1,7 +1,9 @@
 #include "Camera.h"
 #include "KeyMgr.h"
+#include "CPuzzle.h"
 
 CCamera* CCamera::Instance = nullptr;
+extern CPuzzle* gPuzzle;
 
 CCamera::CCamera()
 {
@@ -50,6 +52,8 @@ glm::mat4 CCamera::GetMatProjView() const
 
 bool CCamera::CheckCollision(const glm::vec3& nextPos)
 {
+	if (gPuzzle)
+		return gPuzzle->CheckCollision(nextPos);
 	return false;
 }
 
