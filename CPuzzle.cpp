@@ -92,6 +92,35 @@ void CPuzzle::LevelSet(int level)
 			}
 		}
 	}
+
+	int ran = RandIntNum(3);
+	if (level == 1)
+	{
+		if (ran == 0)
+			level1_1();
+		else if (ran == 1)
+			level1_2();
+		else if (ran == 2)
+			level1_3();
+	}
+	else if (level == 2)
+	{
+		if (ran == 0)
+			level2_1();
+		else if (ran == 1)
+			level2_2();
+		else if (ran == 2)
+			level2_3();
+	}
+	else if (level == 3)
+	{
+		if (ran == 0)
+			level3_1();
+		else if (ran == 1)
+			level3_2();
+		else if (ran == 2)
+			level3_3();
+	}
 }
 
 void CPuzzle::Collision(bool isDel)
@@ -212,4 +241,56 @@ bool CPuzzle::RayAABB(const glm::vec3& O, const glm::vec3& D, const glm::vec3& B
 		faceHit = (D.z > 0 ? HIT_Z_MIN : HIT_Z_MAX);
 
 	return true;
+}
+
+void CPuzzle::level1_1()
+{
+	Blocks[0][1][0].Quiz = true;
+	Blocks[1][1][0].Quiz = true;
+	Blocks[0][1][1].Quiz = true;
+	Blocks[1][1][1].Quiz = true;
+	Blocks[0][2][0].Quiz = true;
+	Blocks[1][2][0].Quiz = true;
+	Blocks[0][2][1].Quiz = true;
+	Blocks[1][2][1].Quiz = true;
+}
+
+void CPuzzle::level1_2()
+{
+	
+}
+
+void CPuzzle::level1_3()
+{
+
+}
+
+void CPuzzle::level2_1()
+{
+	
+}
+
+void CPuzzle::level2_2()
+{
+
+}
+
+void CPuzzle::level2_3()
+{
+	
+}
+
+void CPuzzle::level3_1()
+{
+
+}
+
+void CPuzzle::level3_2()
+{
+	
+}
+
+void CPuzzle::level3_3()
+{
+	
 }

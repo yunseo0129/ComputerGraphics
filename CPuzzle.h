@@ -36,6 +36,15 @@ private:
 	bool RayAABB(const glm::vec3& O, const glm::vec3& D,
 		const glm::vec3& Bmin, const glm::vec3& Bmax,
 		float& tHit, HitFace& faceHit);
+	void level1_1();
+	void level1_2();
+	void level1_3();
+	void level2_1();
+	void level2_2();
+	void level2_3();
+	void level3_1();
+	void level3_2();
+	void level3_3();
 
 private:
 	Block Blocks[4][5][4] = {};
