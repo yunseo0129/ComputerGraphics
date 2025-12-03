@@ -17,6 +17,9 @@ public:
 		return Instance;
 	}
 
+private:
+	bool CheckCollision(const glm::vec3& nextPos);
+
 public:
 	void UpdateProjection(float w, float h);
 	void UpdateView();

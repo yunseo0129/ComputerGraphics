@@ -257,40 +257,98 @@ void CPuzzle::level1_1()
 
 void CPuzzle::level1_2()
 {
+	Blocks[0][1][0].Quiz = true;
+	Blocks[1][1][0].Quiz = true;
+	Blocks[0][1][1].Quiz = true;
+
+	Blocks[1][2][1].Quiz = true;
 	
 }
 
 void CPuzzle::level1_3()
 {
+	Blocks[0][1][0].Quiz = true;
+	Blocks[0][1][1].Quiz = true;
+	Blocks[1][1][0].Quiz = true;
 
+	Blocks[0][2][1].Quiz = true;
 }
 
 void CPuzzle::level2_1()
 {
+	for (int i = 0; i < 3; ++i)
+		for (int k = 0; k < 3; ++k)
+			Blocks[i][1][k].Quiz = true;
+
+	for (int i = 0; i < 3; ++i)
+		for (int k = 0; k < 3; ++k)
+			if (!(i == 0 && k == 0)) 
+				Blocks[i][2][k].Quiz = true;
+
+	Blocks[1][3][1].Quiz = true;
 	
 }
 
 void CPuzzle::level2_2()
 {
+	for (int i = 0; i < 3; ++i)
+		Blocks[i][1][1].Quiz = true;
+	for (int k = 0; k < 3; ++k)
+		Blocks[1][1][k].Quiz = true;
 
+	Blocks[1][2][1].Quiz = true;
 }
 
 void CPuzzle::level2_3()
 {
-	
+	for (int i = 0; i < 3; ++i)
+		for (int k = 0; k < 3; ++k)
+			if (i == 0 || i == 2 || k == 0 || k == 2)
+				Blocks[i][1][k].Quiz = true;
+
+	for (int i = 0; i < 3; ++i)
+		for (int k = 0; k < 3; ++k)
+			if (i == 0 || i == 2 || k == 0 || k == 2)
+				Blocks[i][2][k].Quiz = true;
 }
 
 void CPuzzle::level3_1()
 {
-
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 1; j <= 4; ++j) 
+		{
+			for (int k = 0; k < 4; ++k)
+			{
+				Blocks[i][j][k].Quiz = true;
+			}
+		}
+	}
 }
 
 void CPuzzle::level3_2()
 {
-	
+	for (int y = 1; y <= 4; ++y)
+	{
+		for (int i = 0; i < 4; ++i)
+			Blocks[i][y][1].Quiz = true;
+
+		for (int k = 0; k < 4; ++k)
+			Blocks[1][y][k].Quiz = true;
+	}
 }
 
 void CPuzzle::level3_3()
 {
-	
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 1; j <= 4; ++j)
+		{
+			for (int k = 0; k < 4; ++k)
+			{
+				if ((i + j + k) % 2 == 0)
+					Blocks[i][j][k].Quiz = true;
+			}
+		}
+	}
 }
