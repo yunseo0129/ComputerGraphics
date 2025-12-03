@@ -27,6 +27,7 @@ public:
 	glm::mat4 GetMatProj() const { return MatProj; }
 	glm::mat4 GetMatView() const { return MatView; }
 	glm::mat4 GetMatProjView() const;
+	glm::mat4* GetWorldMatPtr() { return &WorldMat; }
 
 	glm::vec3 GetPos() const { return vPos; }
 	glm::vec3 GetLook() const { return vLook; }
@@ -50,4 +51,5 @@ private:
 	glm::mat4 MatView = glm::mat4(1.f); // ¿ø±Ùºä
 	glm::mat4 MatProjOrthor = glm::mat4(1.f); // Á÷±³Åõ¿µ
 	glm::mat4 MatViewOrthor = glm::mat4(1.f); // Á÷±³ºä
+	glm::mat4 WorldMat = glm::mat4(1.f);
 };

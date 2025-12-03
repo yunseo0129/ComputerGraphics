@@ -46,6 +46,9 @@
     <Filter Include="소스 파일\Puzzle">
       <UniqueIdentifier>{890dcb86-9ed9-46e7-ab6f-e44cb6c76137}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Hand">
+      <UniqueIdentifier>{6af0023a-9a7c-4c14-864d-f48a6a67331e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Default.h">
@@ -72,6 +75,9 @@
     <ClInclude Include="CPuzzle.h">
       <Filter>소스 파일\Puzzle</Filter>
     </ClInclude>
+    <ClInclude Include="CHand.h">
+      <Filter>소스 파일\Hand</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -94,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="CPuzzle.cpp">
       <Filter>소스 파일\Puzzle</Filter>
+    </ClCompile>
+    <ClCompile Include="CHand.cpp">
+      <Filter>소스 파일\Hand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

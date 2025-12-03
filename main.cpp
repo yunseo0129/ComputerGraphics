@@ -4,6 +4,7 @@
 #include "KeyMgr.h"
 #include "CLight.h"
 #include "CPuzzle.h"
+#include "CHand.h"
 
 char* filetobuf(const char* file);
 void make_vertexShaders();
@@ -29,6 +30,7 @@ int WinSizeY = 600;
 CShape* gMap = nullptr;
 CShape* gCreatingBox[16] = {};
 CPuzzle* gPuzzle = nullptr;
+CHand* gHand = nullptr;
 CShape* gAim = nullptr;
 
 void main(int argc, char** argv)
@@ -168,6 +170,9 @@ GLvoid drawScene(GLvoid)
 	if (gPuzzle != nullptr)
 		gPuzzle->Render();
 
+	if (gHand != nullptr)
+		gHand->Render();
+
 	// ui
 	CCamera::GetInstance()->UiModeOn();
 	if (gAim != nullptr)
@@ -237,6 +242,7 @@ void Animation(int value)
 	CCamera::GetInstance()->UpdateView();
 
 	gPuzzle->Update();
+	gHand->Update();
 
 	glutPostRedisplay();
 	glutTimerFunc(10, Animation, value);
@@ -266,6 +272,9 @@ void Initial()
 	gPuzzle = new CPuzzle();
 	gPuzzle->Initialize(shaderProgramID);
 	gPuzzle->LevelSet(3);
+
+	gHand = new CHand();
+	gHand->Initialize(shaderProgramID);
 
 	gAim = new CCube();
 	gAim->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);

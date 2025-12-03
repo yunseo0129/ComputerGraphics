@@ -30,6 +30,7 @@ void CCamera::UpdateView()
     vUp = glm::normalize(glm::cross(vRight, vLook));
 
 	MatView = glm::lookAt(vPos, vPos + vLook, vUp);
+	WorldMat = glm::inverse(MatView);
 }
 
 void CCamera::Initial()
