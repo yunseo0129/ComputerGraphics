@@ -38,6 +38,7 @@ private:
 		float& tHit, HitFace& faceHit);
 
 private:
+	static const bool QuizData[3][3][4][5][4];
 	Block Blocks[4][5][4] = {};
 	bool isLClicked = false;
 	bool isRClicked = false;
