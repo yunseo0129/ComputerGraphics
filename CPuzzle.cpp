@@ -245,13 +245,13 @@ bool CPuzzle::RayAABB(const glm::vec3& O, const glm::vec3& D, const glm::vec3& B
 
 void CPuzzle::level1_1()
 {
-	Blocks[0][1][0].Quiz = true;
+	Blocks[0][1][0].Quiz = false;
 	Blocks[1][1][0].Quiz = true;
 	Blocks[0][1][1].Quiz = true;
 	Blocks[1][1][1].Quiz = true;
-	Blocks[0][2][0].Quiz = true;
-	Blocks[1][2][0].Quiz = true;
-	Blocks[0][2][1].Quiz = true;
+	Blocks[0][2][0].Quiz = false;
+	Blocks[1][2][0].Quiz = false;
+	Blocks[0][2][1].Quiz = false;
 	Blocks[1][2][1].Quiz = true;
 }
 
