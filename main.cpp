@@ -2,7 +2,13 @@
 #include "Cube.h"
 #include "Camera.h"
 #include "KeyMgr.h"
+<<<<<<< Updated upstream
 //test
+=======
+#include "CLight.h"
+#include "CPuzzle.h"
+#include "CHand.h"
+>>>>>>> Stashed changes
 
 char* filetobuf(const char* file);
 void make_vertexShaders();
@@ -25,6 +31,15 @@ GLuint fragmentShader;
 int WinSizeX = 800;
 int WinSizeY = 600;
 
+<<<<<<< Updated upstream
+=======
+CShape* gMap = nullptr;
+CShape* gCreatingBox[16] = {};
+CPuzzle* gPuzzle = nullptr;
+CHand* gHand = nullptr;
+CShape* gAim = nullptr;
+
+>>>>>>> Stashed changes
 void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
@@ -162,8 +177,19 @@ GLvoid drawScene(GLvoid)
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "view"), 1, GL_FALSE, glm::value_ptr(view));
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
+<<<<<<< Updated upstream
 	if (gCube)
 		gCube->Draw();
+>>>>>>> Stashed changes
+=======
+	if (gHand != nullptr)
+		gHand->Render();
+
+	// ui
+	CCamera::GetInstance()->UiModeOn();
+	if (gAim != nullptr)
+		gAim->Draw();
+	CCamera::GetInstance()->UiModeOff();
 >>>>>>> Stashed changes
 
 	glutSwapBuffers();
@@ -232,7 +258,13 @@ void DragInput(int x, int y)
 void Animation(int value)
 {
 	CCamera::GetInstance()->UpdateView();
+<<<<<<< Updated upstream
 	CKeyMgr::Get_Instance()->Key_Update();
+=======
+
+	gPuzzle->Update();
+	gHand->Update();
+>>>>>>> Stashed changes
 
 	glutPostRedisplay();
 	glutTimerFunc(10, Animation, value);
@@ -245,9 +277,39 @@ void Initial()
 =======
 	CLight::GetInstance()->Init();
 
+<<<<<<< Updated upstream
 	//테스트용 큐브 init
 	gCube = new CCube();
 	gCube->Initialize(glm::vec3(0.0f, 0.0f, 0.0f), shaderProgramID);
 	gCube->SetColor(1.0f, 0.0f, 0.0f);
+>>>>>>> Stashed changes
+=======
+	gMap = new CCube();
+	gMap->Initialize(glm::vec3(-6.f, -1.f, -6.f), shaderProgramID);
+	gMap->SetScale(16.f, 1.f, 16.f);
+	static_cast<CCube*>(gMap)->SetColor(0.3f, 0.9f, 0.6f);
+	gMap->Update();
+
+	for (int i = 0; i < 16; ++i)
+	{
+		gCreatingBox[i] = new CCube();
+		gCreatingBox[i]->Initialize(glm::vec3((float)(i / 4), -0.999f, (float)(i % 4)), shaderProgramID);
+		gCreatingBox[i]->SetScale(1.f, 1.f, 1.f);
+		static_cast<CCube*>(gCreatingBox[i])->SetColor(1.f, 0.2f, 0.2f);
+		gCreatingBox[i]->Update();
+	}
+
+	gPuzzle = new CPuzzle();
+	gPuzzle->Initialize(shaderProgramID);
+	gPuzzle->LevelSet(3);
+
+	gHand = new CHand();
+	gHand->Initialize(shaderProgramID);
+
+	gAim = new CCube();
+	gAim->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);
+	gAim->SetScale(0.05f, 0.05f, 0.05f);
+	static_cast<CCube*>(gAim)->SetColor(1.f, 1.f, 1.f);
+	gAim->Update();
 >>>>>>> Stashed changes
 }
