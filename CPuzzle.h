@@ -9,6 +9,13 @@ struct Block
 	bool Quiz = false;
 	bool ban = true;
 };
+enum HitFace
+{
+	HIT_NONE,
+	HIT_X_MIN, HIT_X_MAX,
+	HIT_Y_MIN, HIT_Y_MAX,
+	HIT_Z_MIN, HIT_Z_MAX
+};
 
 class CPuzzle
 {
@@ -22,7 +29,16 @@ public:
 public:
 	bool AnswerCheck() const;
 	void LevelSet(int level);
+	void Click(bool isR) { isR ? isRClicked = true : isLClicked = true; }
+
+private:
+	void Collision(bool isDel);
+	bool RayAABB(const glm::vec3& O, const glm::vec3& D,
+		const glm::vec3& Bmin, const glm::vec3& Bmax,
+		float& tHit, HitFace& faceHit);
 
 private:
 	Block Blocks[4][5][4] = {};
+	bool isLClicked = false;
+	bool isRClicked = false;
 };

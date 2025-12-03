@@ -28,6 +28,9 @@ public:
 	glm::mat4 GetMatView() const { return MatView; }
 	glm::mat4 GetMatProjView() const;
 
+	glm::vec3 GetPos() const { return vPos; }
+	glm::vec3 GetLook() const { return vLook; }
+
 private:
 	void KeyInput();
 

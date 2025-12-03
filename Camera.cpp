@@ -63,6 +63,14 @@ void CCamera::KeyInput()
         vPos -= glm::normalize(glm::cross(front, vUp)) * cameraSpeed;
     if (CKeyMgr::Get_Instance()->Key_Pressing('D'))
 		vPos += glm::normalize(glm::cross(front, vUp)) * cameraSpeed;
+    if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
+		vPos += cameraSpeed * glm::vec3(0.f, 1.f, 0.f);
+	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_LSHIFT))
+	{
+		vPos -= cameraSpeed * glm::vec3(0.f, 1.f, 0.f);
+		if (vPos.y < 1.7f)
+			vPos.y = 1.7f;
+	}
 
     // 마우스 입력
 	POINT currMousePos;

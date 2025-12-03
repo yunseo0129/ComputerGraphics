@@ -215,15 +215,13 @@ void KeyUp(unsigned char key, int x, int y)
 
 void MouseInput(int button, int state, int x, int y)
 {
-	GLclampf MouseX = (x / GLfloat(WinSizeX / 2)) - 1.f;
-	GLclampf MouseY = -((y / GLfloat(WinSizeY / 2)) - 1.f);
 	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
 	{
-		
+		gPuzzle->Click(true);
 	}
 	else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
-		
+		gPuzzle->Click(false);
 	}
 	glutPostRedisplay();
 }
@@ -237,6 +235,8 @@ void Animation(int value)
 {
 	CKeyMgr::Get_Instance()->Key_Update();
 	CCamera::GetInstance()->UpdateView();
+
+	gPuzzle->Update();
 
 	glutPostRedisplay();
 	glutTimerFunc(10, Animation, value);
@@ -265,6 +265,7 @@ void Initial()
 
 	gPuzzle = new CPuzzle();
 	gPuzzle->Initialize(shaderProgramID);
+	gPuzzle->LevelSet(3);
 
 	gAim = new CCube();
 	gAim->Initialize(glm::vec3(0.f, 0.f, 0.f), shaderProgramID);
