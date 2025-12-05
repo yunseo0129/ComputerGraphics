@@ -223,10 +223,12 @@ void MouseInput(int button, int state, int x, int y)
 	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
 	{
 		gPuzzle->Click(true);
+		gHand->SetLClicked(true);
 	}
 	else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
 		gPuzzle->Click(false);
+		gHand->SetLClicked(true);
 	}
 	glutPostRedisplay();
 }

@@ -1,5 +1,6 @@
 #include "CHand.h"
 #include "Camera.h"
+#include <cmath>
 
 CHand::CHand()
 {
@@ -21,28 +22,43 @@ void CHand::Initialize(int _shaderID)
 }
 void CHand::Update()
 {
-	if (isLClicked)
+	if ((isLClicked || isRClicked) && !isSwinging)
 	{
-		switch (iAnimFrame)
-		{
-		case 0:
-			++iAnimFrame;
-			break;
-		default:
-			break;
-		}
+		isSwinging = true;
+		iAnimFrame = 0;
+		isLClicked = false;
+		isRClicked = false;
 	}
-	else if (isRClicked)
-	{
-		switch (iAnimFrame)
-		{
-		case 0:
-			++iAnimFrame;
-			break;
-		default:
-			break;
-		}
-	}
+    if (isSwinging)
+    {
+        const int maxFrame = 10;  
+        float t = static_cast<float>(iAnimFrame) / static_cast<float>(maxFrame);
+        if (t > 1.f) t = 1.f;
+
+        const float PI = 3.1415926535f;
+        float swing = sinf(t * PI);   
+
+        float targetRotX = swing * -35.f;
+
+        float deltaX = targetRotX - currentRotX;
+        if (std::fabs(deltaX) > 0.0001f)
+        {
+            HandCube->RotateX(deltaX);
+            currentRotX = targetRotX;
+        }
+
+        ++iAnimFrame;
+        if (iAnimFrame > maxFrame)
+        {
+            float back = -currentRotX;
+            if (std::fabs(back) > 0.0001f)
+                HandCube->RotateX(back);
+
+            currentRotX = 0.f;
+            isSwinging = false;
+            iAnimFrame = 0;
+        }
+    }
 
 	HandCube->Update();
 }

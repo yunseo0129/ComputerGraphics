@@ -16,5 +16,7 @@ private:
 	bool isLClicked = false;
 	bool isRClicked = false;
 	int iAnimFrame = 0;
+	bool  isSwinging = false;  
+	float currentRotX = 0.f;
 	CCube* HandCube;
 };
