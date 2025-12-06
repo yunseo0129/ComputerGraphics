@@ -33,6 +33,10 @@ public:
 
 	bool CheckCollision(const glm::vec3& camNextPos) const;
 
+	void SetView(bool is) {
+		isNormal = is;
+	}
+
 private:
 	void Collision(bool isDel);
 	bool RayAABB(const glm::vec3& O, const glm::vec3& D,
@@ -51,6 +55,7 @@ private:
 private:
 	static const bool QuizData[3][3][4][5][4];
 	Block Blocks[4][5][4] = {};
+	bool isNormal = true;
 	bool isLClicked = false;
 	bool isRClicked = false;
 };

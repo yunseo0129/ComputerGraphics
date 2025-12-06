@@ -27,6 +27,8 @@ GLuint fragmentShader;
 int WinSizeX = 800;
 int WinSizeY = 600;
 
+int level = 1;
+
 CShape* gMap = nullptr;
 CShape* gCreatingBox[16] = {};
 CPuzzle* gPuzzle = nullptr;
@@ -38,7 +40,7 @@ void main(int argc, char** argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(WinSizeX, WinSizeY);
+	glutInitWindowSize(WinSizeX + 200, WinSizeY);
 	glutCreateWindow("2019180037");
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
@@ -151,13 +153,16 @@ GLuint make_shaderProgram()
 
 GLvoid drawScene(GLvoid)
 {
+	glViewport(0, 0, 800, 600);
 	glClearColor(0.2f, 0.6f, 0.8f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(shaderProgramID);
 
 	//CLight::GetInstance()->ApplyAmbient(shaderProgramID);
-
+	// World Objects
+	CCamera::GetInstance()->viewnormal();
+	gPuzzle->SetView(true);
 	if (gMap != nullptr)
 		gMap->Draw();
 	
@@ -173,11 +178,27 @@ GLvoid drawScene(GLvoid)
 	if (gHand != nullptr)
 		gHand->Render();
 
-	// ui
-	CCamera::GetInstance()->UiModeOn();
+	// UI
+	CCamera::GetInstance()->viewui();
 	if (gAim != nullptr)
 		gAim->Draw();
-	CCamera::GetInstance()->UiModeOff();
+
+	gPuzzle->SetView(false);
+	CCamera::GetInstance()->viewfront();
+	glViewport(800, 400, 200, 200);
+	glClear(GL_DEPTH_BUFFER_BIT);
+	if (gPuzzle != nullptr)
+		gPuzzle->Render();
+	CCamera::GetInstance()->viewside();
+	glViewport(800, 200, 200, 200);
+	glClear(GL_DEPTH_BUFFER_BIT);
+	if (gPuzzle != nullptr)
+		gPuzzle->Render();
+	CCamera::GetInstance()->viewup();
+	glViewport(800, 0, 200, 200);
+	glClear(GL_DEPTH_BUFFER_BIT);
+	if (gPuzzle != nullptr)
+		gPuzzle->Render();
 
 	glutSwapBuffers();
 }
@@ -202,6 +223,10 @@ void KeyInput(unsigned char key, int x, int y)
 		break;
 	case '-':  
 		CLight::GetInstance()->SetAmbientStrength(0.1f);
+		break;
+	case 'r':
+		if (gPuzzle->AnswerCheck())
+			gPuzzle->LevelSet(++level);
 		break;
 	case 'q':
 		glutLeaveMainLoop();
@@ -273,7 +298,7 @@ void Initial()
 
 	gPuzzle = new CPuzzle();
 	gPuzzle->Initialize(shaderProgramID);
-	gPuzzle->LevelSet(3);
+	gPuzzle->LevelSet(level);
 
 	gHand = new CHand();
 	gHand->Initialize(shaderProgramID);

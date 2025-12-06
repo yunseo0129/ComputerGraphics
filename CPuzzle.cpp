@@ -48,8 +48,16 @@ void CPuzzle::Render()
 		{
 			for (int k = 0; k < 4; ++k)
 			{
-				if (Blocks[i][j][k].Exist)
-					Blocks[i][j][k].Cube->Draw();
+				if (isNormal)
+				{
+					if (Blocks[i][j][k].Exist)
+						Blocks[i][j][k].Cube->Draw();
+				}
+				else
+				{
+					if (Blocks[i][j][k].Quiz)
+						Blocks[i][j][k].Cube->Draw();
+				}
 			}
 		}
 	}
@@ -59,7 +67,7 @@ bool CPuzzle::AnswerCheck() const
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		for (int j = 0; j < 5; ++j)
+		for (int j = 1; j < 5; ++j)
 		{
 			for (int k = 0; k < 4; ++k)
 			{
@@ -316,7 +324,7 @@ void CPuzzle::level3_1()
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		for (int j = 1; j <= 4; ++j) 
+		for (int j = 0; j < 5; ++j) 
 		{
 			for (int k = 0; k < 4; ++k)
 			{

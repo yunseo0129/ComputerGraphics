@@ -18,6 +18,8 @@ using namespace std;
 #include <gl/glm/ext.hpp>
 #include <gl/glm/gtc/matrix_transform.hpp>
 
+enum eVIEW { VIEW_NORMAL, VIEW_UI, VIEW_FRONT, VIEW_SIDE, VIEW_UP };
+
 inline GLfloat RandFloat0_1()
 {
 	random_device rd;

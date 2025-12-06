@@ -39,15 +39,31 @@ void CCamera::Initial()
 {
     UpdateProjection(800, 600);
     UpdateView();
-	MatProjOrthor = glm::ortho(-4.f, 4.f, -3.f, 3.f, 0.1f, 100.f);
-	MatViewOrthor = glm::lookAt(glm::vec3(0.f, 10.f, 0.f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, -1.f));
+	MatProjUI = glm::ortho(-4.f, 4.f, -3.f, 3.f, 0.1f, 100.f);
+	MatProjOrthor = glm::ortho(-2.f, 2.f, -2.f, 2.f, 0.1f, 100.f);
+	MatViewUI = glm::lookAt(glm::vec3(0.f, 10.f, 0.f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, -1.f));
+	MatViewFront = glm::lookAt(glm::vec3(2.f, 2.f, -4.f), glm::vec3(2.f, 2.f, 2.f), glm::vec3(0.f, 1.f, 0.f));
+	MatViewSide = glm::lookAt(glm::vec3(-4.f, 2.f, 2.f), glm::vec3(2.f, 2.f, 2.f), glm::vec3(0.f, 1.f, 0.f));
+	MatViewUp = glm::lookAt(glm::vec3(2.f, 4.f, 2.f), glm::vec3(2.f, 2.f, 2.f), glm::vec3(0.f, 0.f, 1.f));
 }
 
 glm::mat4 CCamera::GetMatProjView() const
 {
-    if (UIMode)
-		return MatProjOrthor * MatViewOrthor;
-    return MatProj * MatView;
+	switch (eView)
+	{
+	case VIEW_NORMAL:
+		return MatProj * MatView;
+	case VIEW_UI:
+		return MatProjUI * MatViewUI;
+	case VIEW_FRONT:
+		return MatProjOrthor * MatViewFront;
+	case VIEW_SIDE:
+		return MatProjOrthor * MatViewSide;
+	case VIEW_UP:
+		return MatProjOrthor * MatViewUp;
+	default:
+		break;
+	}
 }
 
 bool CCamera::CheckCollision(const glm::vec3& nextPos)

@@ -17,7 +17,7 @@ void CHand::Initialize(int _shaderID)
 	HandCube->RotateX(-60.f);
 	HandCube->RotateY(30.f);
 	HandCube->RotateZ(15.f);
-	//HandCube->SetColor(1.f, 1.f, 0.f);
+	HandCube->SetColor(0.95f, 0.76f, 0.49f);
 	HandCube->SetParentMat(CCamera::GetInstance()->GetWorldMatPtr());
 }
 void CHand::Update()
