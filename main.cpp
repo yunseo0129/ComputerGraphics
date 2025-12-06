@@ -226,7 +226,14 @@ void KeyInput(unsigned char key, int x, int y)
 		break;
 	case 'r':
 		if (gPuzzle->AnswerCheck())
-			gPuzzle->LevelSet(++level);
+		{
+			if (++level == 4)
+			{
+				// ¿£µù
+			}
+			else
+				gPuzzle->LevelSet(level);
+		}
 		break;
 	case 'q':
 		glutLeaveMainLoop();
