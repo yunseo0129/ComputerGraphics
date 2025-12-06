@@ -185,17 +185,17 @@ GLvoid drawScene(GLvoid)
 
 	gPuzzle->SetView(false);
 	CCamera::GetInstance()->viewfront();
-	glViewport(800, 400, 200, 200);
+	glViewport(805, 407, 190, 190);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	if (gPuzzle != nullptr)
 		gPuzzle->Render();
 	CCamera::GetInstance()->viewside();
-	glViewport(800, 200, 200, 200);
+	glViewport(805, 207, 190, 190);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	if (gPuzzle != nullptr)
 		gPuzzle->Render();
 	CCamera::GetInstance()->viewup();
-	glViewport(800, 0, 200, 200);
+	glViewport(805, 7, 190, 190);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	if (gPuzzle != nullptr)
 		gPuzzle->Render();
