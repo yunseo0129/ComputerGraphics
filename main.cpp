@@ -249,6 +249,7 @@ void KeyInput(unsigned char key, int x, int y)
 		{
 			if (++level == 4)
 			{
+				gPuzzle->LevelSet(level);
 				StartEnding();
 			}
 			else
@@ -359,7 +360,7 @@ void StartEnding()
 		gEndSpeed[i] = 0.02f + RandFloat0_1() * 0.03f;
 
 		gEndCubes[i]->Initialize(gEndPos[i], shaderProgramID);
-		gEndCubes[i]->SetScale(0.3f, 0.3f, 0.3f);
+		gEndCubes[i]->SetScale(0.15f, 0.15f, 0.15f);
 		gEndCubes[i]->SetColor(1.0f, 1.0f, 1.0f);
 		gEndCubes[i]->Update();
 	}
