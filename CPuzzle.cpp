@@ -20,7 +20,20 @@ void CPuzzle::Initialize(int _shaderID)
 			{
 				Blocks[i][j][k].Cube = new CCube();
 				Blocks[i][j][k].Cube->Initialize(glm::vec3(i, j - 1, k), _shaderID);
-				Blocks[i][j][k].Cube->SetColor(RandFloat0_1(), RandFloat0_1(),RandFloat0_1());
+				float r, g, b;
+				while (true)
+				{
+					r = RandFloat0_1();
+					g = RandFloat0_1();
+					b = RandFloat0_1();
+					if (std::fabs(r - 0.2f) > 0.05f ||
+						std::fabs(g - 0.6f) > 0.05f ||
+						std::fabs(b - 0.8f) > 0.05f)
+					{
+						break;
+					}
+				}
+				Blocks[i][j][k].Cube->SetColor(r, g, b);
 				Blocks[i][j][k].Cube->Update();
 			}
 		}
@@ -268,9 +281,8 @@ void CPuzzle::level1_2()
 	Blocks[0][1][0].Quiz = true;
 	Blocks[1][1][0].Quiz = true;
 	Blocks[0][1][1].Quiz = true;
-
+	Blocks[1][1][1].Quiz = true;
 	Blocks[1][2][1].Quiz = true;
-	
 }
 
 void CPuzzle::level1_3()
@@ -278,88 +290,102 @@ void CPuzzle::level1_3()
 	Blocks[0][1][0].Quiz = true;
 	Blocks[0][1][1].Quiz = true;
 	Blocks[1][1][0].Quiz = true;
-
 	Blocks[0][2][1].Quiz = true;
 }
 
 void CPuzzle::level2_1()
 {
-	for (int i = 0; i < 3; ++i)
-		for (int k = 0; k < 3; ++k)
-			Blocks[i][1][k].Quiz = true;
+	Blocks[0][1][1].Quiz = true;
 
-	for (int i = 0; i < 3; ++i)
-		for (int k = 0; k < 3; ++k)
-			if (!(i == 0 && k == 0)) 
-				Blocks[i][2][k].Quiz = true;
+	Blocks[1][1][0].Quiz = true;
+	Blocks[1][2][0].Quiz = true;
+	Blocks[1][1][1].Quiz = true;
 
-	Blocks[1][3][1].Quiz = true;
-	
+	Blocks[2][1][0].Quiz = true;
+	Blocks[2][2][0].Quiz = true;
+	Blocks[2][1][1].Quiz = true;
+	Blocks[2][1][2].Quiz = true;
 }
 
 void CPuzzle::level2_2()
 {
-	for (int i = 0; i < 3; ++i)
-		Blocks[i][1][1].Quiz = true;
-	for (int k = 0; k < 3; ++k)
-		Blocks[1][1][k].Quiz = true;
+	Blocks[0][1][2].Quiz = true;
+	Blocks[0][2][2].Quiz = true;
 
-	Blocks[1][2][1].Quiz = true;
+	Blocks[1][1][0].Quiz = true;
+	Blocks[1][1][2].Quiz = true;
+	Blocks[1][2][2].Quiz = true;
+	Blocks[1][3][2].Quiz = true;
+
+	Blocks[2][1][1].Quiz = true;
+	Blocks[2][1][2].Quiz = true;
 }
 
 void CPuzzle::level2_3()
 {
-	for (int i = 0; i < 3; ++i)
-		for (int k = 0; k < 3; ++k)
-			if (i == 0 || i == 2 || k == 0 || k == 2)
-				Blocks[i][1][k].Quiz = true;
+	Blocks[0][1][2].Quiz = true;
 
-	for (int i = 0; i < 3; ++i)
-		for (int k = 0; k < 3; ++k)
-			if (i == 0 || i == 2 || k == 0 || k == 2)
-				Blocks[i][2][k].Quiz = true;
+	Blocks[1][1][0].Quiz = true;
+	Blocks[1][2][0].Quiz = true;
+	Blocks[1][3][0].Quiz = true;
+	Blocks[1][1][1].Quiz = true;
+	Blocks[1][2][1].Quiz = true;
+
+	Blocks[2][1][0].Quiz = true;
 }
 
 void CPuzzle::level3_1()
 {
-	for (int i = 0; i < 4; ++i)
-	{
-		for (int j = 0; j < 5; ++j) 
-		{
-			for (int k = 0; k < 4; ++k)
-			{
-				Blocks[i][j][k].Quiz = true;
-			}
-		}
-	}
+	Blocks[0][1][0].Quiz = true;
+
+	Blocks[1][1][1].Quiz = true;
+	Blocks[1][2][1].Quiz = true;
+
+	Blocks[2][1][2].Quiz = true;
+	Blocks[2][2][2].Quiz = true;
+	Blocks[2][3][2].Quiz = true;
+
+	Blocks[3][1][3].Quiz = true;
+	Blocks[3][2][3].Quiz = true;
+	Blocks[3][3][3].Quiz = true;
+	Blocks[3][4][3].Quiz = true;
 }
 
 void CPuzzle::level3_2()
 {
-	for (int y = 1; y <= 4; ++y)
-	{
-		for (int i = 0; i < 4; ++i)
-			Blocks[i][y][1].Quiz = true;
+	Blocks[0][1][3].Quiz = true;
+	Blocks[0][2][3].Quiz = true;
+	Blocks[0][3][3].Quiz = true;
+	Blocks[0][4][3].Quiz = true;
 
-		for (int k = 0; k < 4; ++k)
-			Blocks[1][y][k].Quiz = true;
-	}
+	Blocks[1][1][2].Quiz = true;
+	Blocks[1][2][2].Quiz = true;
+	Blocks[1][3][2].Quiz = true;
+
+	Blocks[2][1][1].Quiz = true;
+	Blocks[2][2][1].Quiz = true;
+
+	Blocks[3][1][0].Quiz = true;
 }
 
 void CPuzzle::level3_3()
 {
-	for (int i = 0; i < 4; ++i)
-	{
-		for (int j = 1; j <= 4; ++j)
-		{
-			for (int k = 0; k < 4; ++k)
-			{
-				if ((i + j + k) % 2 == 0)
-					Blocks[i][j][k].Quiz = true;
-			}
-		}
-	}
+	Blocks[0][1][2].Quiz = true;
+	Blocks[0][2][2].Quiz = true;
+
+	Blocks[1][1][0].Quiz = true;
+	Blocks[1][2][0].Quiz = true;
+	Blocks[1][3][0].Quiz = true;
+	Blocks[1][4][0].Quiz = true;
+
+	Blocks[2][1][3].Quiz = true;
+	Blocks[2][2][3].Quiz = true;
+	Blocks[2][3][3].Quiz = true;
+
+	Blocks[3][1][1].Quiz = true;
 }
+
+
 
 bool CPuzzle::CheckCollision(const glm::vec3& camNextPos) const
 {
