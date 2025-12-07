@@ -18,6 +18,9 @@ void MouseInput(int button, int state, int x, int y);
 void DragInput(int x, int y);
 void Animation(int value);
 void Initial();
+void StartEnding();
+void UpdateEnding();
+
 
 GLint width, height;
 GLuint shaderProgramID;
@@ -28,6 +31,14 @@ int WinSizeX = 800;
 int WinSizeY = 600;
 
 int level = 1;
+
+bool gIsEnding = false;
+
+const int END_CUBE_COUNT = 20;
+CCube* gEndCubes[END_CUBE_COUNT] = {};
+glm::vec3 gEndStartPos[END_CUBE_COUNT];
+glm::vec3 gEndPos[END_CUBE_COUNT];
+float gEndSpeed[END_CUBE_COUNT];
 
 CShape* gMap = nullptr;
 CShape* gCreatingBox[16] = {};
@@ -229,7 +240,7 @@ void KeyInput(unsigned char key, int x, int y)
 		{
 			if (++level == 4)
 			{
-				// ¿£µù
+				StartEnding();
 			}
 			else
 				gPuzzle->LevelSet(level);
@@ -278,6 +289,11 @@ void Animation(int value)
 	gPuzzle->Update();
 	gHand->Update();
 
+	if (gIsEnding)
+	{
+		UpdateEnding();
+	}
+
 	glutPostRedisplay();
 	glutTimerFunc(10, Animation, value);
 }
@@ -315,4 +331,14 @@ void Initial()
 	gAim->SetScale(0.05f, 0.05f, 0.05f);
 	static_cast<CCube*>(gAim)->SetColor(1.f, 1.f, 1.f);
 	gAim->Update();
+}
+
+void StartEnding()
+{
+
+}
+
+void UpdateEnding()
+{
+
 }
