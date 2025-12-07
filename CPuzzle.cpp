@@ -26,9 +26,9 @@ void CPuzzle::Initialize(int _shaderID)
 					r = RandFloat0_1();
 					g = RandFloat0_1();
 					b = RandFloat0_1();
-					if (std::fabs(r - 0.2f) > 0.05f ||
-						std::fabs(g - 0.6f) > 0.05f ||
-						std::fabs(b - 0.8f) > 0.05f)
+					if (std::fabs(r - 0.2f) > 0.1f ||
+						std::fabs(g - 0.6f) > 0.1f ||
+						std::fabs(b - 0.8f) > 0.1f)
 					{
 						break;
 					}
@@ -353,19 +353,17 @@ void CPuzzle::level3_1()
 
 void CPuzzle::level3_2()
 {
-	Blocks[0][1][3].Quiz = true;
-	Blocks[0][2][3].Quiz = true;
-	Blocks[0][3][3].Quiz = true;
-	Blocks[0][4][3].Quiz = true;
+	Blocks[0][1][0].Quiz = true;
+	Blocks[1][1][0].Quiz = true;
 
-	Blocks[1][1][2].Quiz = true;
-	Blocks[1][2][2].Quiz = true;
-	Blocks[1][3][2].Quiz = true;
+	Blocks[1][2][0].Quiz = true;
 
-	Blocks[2][1][1].Quiz = true;
-	Blocks[2][2][1].Quiz = true;
+	Blocks[1][2][1].Quiz = true;
 
-	Blocks[3][1][0].Quiz = true;
+	Blocks[1][3][1].Quiz = true;
+
+	Blocks[2][3][1].Quiz = true;
+	Blocks[2][3][2].Quiz = true;
 }
 
 void CPuzzle::level3_3()
