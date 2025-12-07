@@ -40,6 +40,10 @@ glm::vec3 gEndStartPos[END_CUBE_COUNT];
 glm::vec3 gEndPos[END_CUBE_COUNT];
 float gEndSpeed[END_CUBE_COUNT];
 
+const int MAX_CLEAR_CUBES = 64;
+CCube* gClearCubes[MAX_CLEAR_CUBES] = {};
+int gClearCubeCount = 0;
+
 CShape* gMap = nullptr;
 CShape* gCreatingBox[16] = {};
 CPuzzle* gPuzzle = nullptr;
@@ -195,6 +199,11 @@ GLvoid drawScene(GLvoid)
 		{
 			if (gEndCubes[i] != nullptr)
 				gEndCubes[i]->Draw();
+		}
+		for (int i = 0; i < gClearCubeCount; ++i)
+		{
+			if (gClearCubes[i] != nullptr)
+				gClearCubes[i]->Draw();
 		}
 	}
 
@@ -364,7 +373,88 @@ void StartEnding()
 		gEndCubes[i]->SetColor(1.0f, 1.0f, 1.0f);
 		gEndCubes[i]->Update();
 	}
+	gClearCubeCount = 0;
+
+	float cell = 0.4f;
+	float baseY = 0.5f;
+	float startX = -2.0f;
+	float wallZ = 2.0f;
+
+	const char* C_pattern[5] =
+	{
+		"XXX",
+		"X..",
+		"X..",
+		"X..",
+		"XXX"
+	};
+	const char* L_pattern[5] =
+	{
+		"X..",
+		"X..",
+		"X..",
+		"X..",
+		"XXX"
+	};
+	const char* E_pattern[5] =
+	{
+		"XXX",
+		"X..",
+		"XXX",
+		"X..",
+		"XXX"
+	};
+	const char* A_pattern[5] =
+	{
+		".X.",
+		"X.X",
+		"XXX",
+		"X.X",
+		"X.X"
+	};
+	const char* R_pattern[5] =
+	{
+		"XX.",
+		"X.X",
+		"XX.",
+		"X.X",
+		"X.X"
+	};
+	const char** patterns[5] = { C_pattern, L_pattern, E_pattern, A_pattern, R_pattern };
+
+	for (int letter = 0; letter < 5; ++letter)
+	{
+		float letterOffsetX = startX + (4 - letter) * (3 * cell + 0.4f);
+
+		for (int row = 0; row < 5; ++row)
+		{
+			for (int col = 0; col < 3; ++col)
+			{
+				if (patterns[letter][row][col] == 'X')
+				{
+					if (gClearCubeCount >= MAX_CLEAR_CUBES)
+						break;
+
+					int rowIdx = 4 - row;  
+					int colIdx = 2 - col; 
+
+					float x = letterOffsetX + colIdx * cell;
+					float y = baseY + rowIdx * cell;
+					float z = wallZ;
+
+					gClearCubes[gClearCubeCount] = new CCube();
+					gClearCubes[gClearCubeCount]->Initialize(glm::vec3(x, y, z), shaderProgramID);
+					gClearCubes[gClearCubeCount]->SetScale(0.25f, 0.25f, 0.25f);
+					gClearCubes[gClearCubeCount]->SetColor(1.0f, 0.2f, 0.2f);
+					gClearCubes[gClearCubeCount]->Update();
+
+					++gClearCubeCount;
+				}
+			}
+		}
+	}
 }
+
 
 void UpdateEnding()
 {
