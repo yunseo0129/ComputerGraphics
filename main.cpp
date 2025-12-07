@@ -189,6 +189,15 @@ GLvoid drawScene(GLvoid)
 	if (gHand != nullptr)
 		gHand->Render();
 
+	if (gIsEnding)
+	{
+		for (int i = 0; i < END_CUBE_COUNT; ++i)
+		{
+			if (gEndCubes[i] != nullptr)
+				gEndCubes[i]->Draw();
+		}
+	}
+
 	// UI
 	CCamera::GetInstance()->viewui();
 	if (gAim != nullptr)
@@ -335,10 +344,39 @@ void Initial()
 
 void StartEnding()
 {
+	gIsEnding = true;
 
+	for (int i = 0; i < END_CUBE_COUNT; ++i)
+	{
+		gEndCubes[i] = new CCube();
+
+		float startX = -4.0f + RandFloat0_1() * 8.0f;
+		float startZ = -4.0f + RandFloat0_1() * 8.0f;
+		float startY = 3.0f + RandFloat0_1() * 4.0f;
+
+		gEndStartPos[i] = glm::vec3(startX, startY, startZ);
+		gEndPos[i] = gEndStartPos[i];
+		gEndSpeed[i] = 0.02f + RandFloat0_1() * 0.03f;
+
+		gEndCubes[i]->Initialize(gEndPos[i], shaderProgramID);
+		gEndCubes[i]->SetScale(0.3f, 0.3f, 0.3f);
+		gEndCubes[i]->SetColor(1.0f, 1.0f, 1.0f);
+		gEndCubes[i]->Update();
+	}
 }
 
 void UpdateEnding()
 {
+	for (int i = 0; i < END_CUBE_COUNT; ++i)
+	{
+		if (!gEndCubes[i]) continue;
 
+		gEndPos[i].y -= gEndSpeed[i];
+
+		if (gEndPos[i].y <= -1.0f)
+			gEndPos[i].y = gEndStartPos[i].y;
+
+		gEndCubes[i]->SetPosition(gEndPos[i]);
+		gEndCubes[i]->Update();
+	}
 }

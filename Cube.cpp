@@ -58,3 +58,10 @@ void CCube::SetColor(float r, float g, float b)
         p->SetColor(r, g, b);
     }
 }
+
+void CCube::SetPosition(const glm::vec3& pos)
+{
+    MatTranslate = glm::mat4(1.0f);
+    MatTranslate = glm::translate(MatTranslate, pos);
+    MatWorld = MatTranslate * MatRotate * MatScale;
+}
