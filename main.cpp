@@ -320,7 +320,6 @@ void Animation(int value)
 void Initial()
 {
 	CCamera::GetInstance()->Initial();
-	CLight::GetInstance()->Init();
 	while (ShowCursor(FALSE) >= 0);
 
 	gMap = new CCube();
