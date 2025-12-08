@@ -53,7 +53,6 @@ private:
 	void level3_3();
 
 private:
-	static const bool QuizData[3][3][4][5][4];
 	Block Blocks[4][5][4] = {};
 	bool isNormal = true;
 	bool isLClicked = false;
