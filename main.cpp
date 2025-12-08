@@ -18,6 +18,9 @@ void MouseInput(int button, int state, int x, int y);
 void DragInput(int x, int y);
 void Animation(int value);
 void Initial();
+void StartEnding();
+void UpdateEnding();
+
 
 GLint width, height;
 GLuint shaderProgramID;
@@ -28,6 +31,18 @@ int WinSizeX = 800;
 int WinSizeY = 600;
 
 int level = 1;
+
+bool gIsEnding = false;
+
+const int END_CUBE_COUNT = 20;
+CCube* gEndCubes[END_CUBE_COUNT] = {};
+glm::vec3 gEndStartPos[END_CUBE_COUNT];
+glm::vec3 gEndPos[END_CUBE_COUNT];
+float gEndSpeed[END_CUBE_COUNT];
+
+const int MAX_CLEAR_CUBES = 64;
+CCube* gClearCubes[MAX_CLEAR_CUBES] = {};
+int gClearCubeCount = 0;
 
 CShape* gMap = nullptr;
 CShape* gCreatingBox[16] = {};
@@ -178,6 +193,20 @@ GLvoid drawScene(GLvoid)
 	if (gHand != nullptr)
 		gHand->Render();
 
+	if (gIsEnding)
+	{
+		for (int i = 0; i < END_CUBE_COUNT; ++i)
+		{
+			if (gEndCubes[i] != nullptr)
+				gEndCubes[i]->Draw();
+		}
+		for (int i = 0; i < gClearCubeCount; ++i)
+		{
+			if (gClearCubes[i] != nullptr)
+				gClearCubes[i]->Draw();
+		}
+	}
+
 	// UI
 	CCamera::GetInstance()->viewui();
 	if (gAim != nullptr)
@@ -229,7 +258,8 @@ void KeyInput(unsigned char key, int x, int y)
 		{
 			if (++level == 4)
 			{
-				// ¿£µù
+				gPuzzle->LevelSet(level);
+				StartEnding();
 			}
 			else
 				gPuzzle->LevelSet(level);
@@ -278,6 +308,11 @@ void Animation(int value)
 	gPuzzle->Update();
 	gHand->Update();
 
+	if (gIsEnding)
+	{
+		UpdateEnding();
+	}
+
 	glutPostRedisplay();
 	glutTimerFunc(10, Animation, value);
 }
@@ -315,4 +350,124 @@ void Initial()
 	gAim->SetScale(0.05f, 0.05f, 0.05f);
 	static_cast<CCube*>(gAim)->SetColor(1.f, 1.f, 1.f);
 	gAim->Update();
+}
+
+void StartEnding()
+{
+	gIsEnding = true;
+
+	for (int i = 0; i < END_CUBE_COUNT; ++i)
+	{
+		gEndCubes[i] = new CCube();
+
+		float startX = -4.0f + RandFloat0_1() * 8.0f;
+		float startZ = -4.0f + RandFloat0_1() * 8.0f;
+		float startY = 3.0f + RandFloat0_1() * 4.0f;
+
+		gEndStartPos[i] = glm::vec3(startX, startY, startZ);
+		gEndPos[i] = gEndStartPos[i];
+		gEndSpeed[i] = 0.02f + RandFloat0_1() * 0.03f;
+
+		gEndCubes[i]->Initialize(gEndPos[i], shaderProgramID);
+		gEndCubes[i]->SetScale(0.15f, 0.15f, 0.15f);
+		gEndCubes[i]->SetColor(1.0f, 1.0f, 1.0f);
+		gEndCubes[i]->Update();
+	}
+	gClearCubeCount = 0;
+
+	float cell = 0.4f;
+	float baseY = 0.5f;
+	float startX = -2.0f;
+	float wallZ = 2.0f;
+
+	const char* C_pattern[5] =
+	{
+		"XXX",
+		"X..",
+		"X..",
+		"X..",
+		"XXX"
+	};
+	const char* L_pattern[5] =
+	{
+		"X..",
+		"X..",
+		"X..",
+		"X..",
+		"XXX"
+	};
+	const char* E_pattern[5] =
+	{
+		"XXX",
+		"X..",
+		"XXX",
+		"X..",
+		"XXX"
+	};
+	const char* A_pattern[5] =
+	{
+		".X.",
+		"X.X",
+		"XXX",
+		"X.X",
+		"X.X"
+	};
+	const char* R_pattern[5] =
+	{
+		"XX.",
+		"X.X",
+		"XX.",
+		"X.X",
+		"X.X"
+	};
+	const char** patterns[5] = { C_pattern, L_pattern, E_pattern, A_pattern, R_pattern };
+
+	for (int letter = 0; letter < 5; ++letter)
+	{
+		float letterOffsetX = startX + (4 - letter) * (3 * cell + 0.4f);
+
+		for (int row = 0; row < 5; ++row)
+		{
+			for (int col = 0; col < 3; ++col)
+			{
+				if (patterns[letter][row][col] == 'X')
+				{
+					if (gClearCubeCount >= MAX_CLEAR_CUBES)
+						break;
+
+					int rowIdx = 4 - row;  
+					int colIdx = 2 - col; 
+
+					float x = letterOffsetX + colIdx * cell;
+					float y = baseY + rowIdx * cell;
+					float z = wallZ;
+
+					gClearCubes[gClearCubeCount] = new CCube();
+					gClearCubes[gClearCubeCount]->Initialize(glm::vec3(x, y, z), shaderProgramID);
+					gClearCubes[gClearCubeCount]->SetScale(0.25f, 0.25f, 0.25f);
+					gClearCubes[gClearCubeCount]->SetColor(1.0f, 0.2f, 0.2f);
+					gClearCubes[gClearCubeCount]->Update();
+
+					++gClearCubeCount;
+				}
+			}
+		}
+	}
+}
+
+
+void UpdateEnding()
+{
+	for (int i = 0; i < END_CUBE_COUNT; ++i)
+	{
+		if (!gEndCubes[i]) continue;
+
+		gEndPos[i].y -= gEndSpeed[i];
+
+		if (gEndPos[i].y <= -1.0f)
+			gEndPos[i].y = gEndStartPos[i].y;
+
+		gEndCubes[i]->SetPosition(gEndPos[i]);
+		gEndCubes[i]->Update();
+	}
 }

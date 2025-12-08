@@ -13,7 +13,8 @@ public:
 	virtual void Draw();
 	virtual void Update();
 
-	void SetColor(float r, float g, float b);
+	void SetColor(float r, float g, float b);   
+	void SetPosition(const glm::vec3& pos);
 
 private:
 	GLuint VAO, VBO, EBO;
