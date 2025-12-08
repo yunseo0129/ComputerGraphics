@@ -2,7 +2,6 @@
 #include "Cube.h"
 #include "Camera.h"
 #include "KeyMgr.h"
-#include "CLight.h"
 #include "CPuzzle.h"
 #include "CHand.h"
 
@@ -174,7 +173,6 @@ GLvoid drawScene(GLvoid)
 
 	glUseProgram(shaderProgramID);
 
-	//CLight::GetInstance()->ApplyAmbient(shaderProgramID);
 	// World Objects
 	CCamera::GetInstance()->viewnormal();
 	gPuzzle->SetView(true);
@@ -244,15 +242,6 @@ void KeyInput(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
-	case 'm':  
-		CLight::GetInstance()->ToggleLight();
-		break;
-	case '+':  
-		CLight::GetInstance()->SetAmbientStrength(0.6f);
-		break;
-	case '-':  
-		CLight::GetInstance()->SetAmbientStrength(0.1f);
-		break;
 	case 'r':
 		if (gPuzzle->AnswerCheck())
 		{
