@@ -126,7 +126,6 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CHand.h" />
-    <ClInclude Include="CLight.h" />
     <ClInclude Include="CPuzzle.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubePart.h" />
@@ -137,7 +136,6 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CHand.cpp" />
-    <ClCompile Include="CLight.cpp" />
     <ClCompile Include="CPuzzle.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubePart.cpp" />
