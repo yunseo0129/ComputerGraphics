@@ -55,7 +55,7 @@ void main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(WinSizeX + 200, WinSizeY);
-	glutCreateWindow("2019180037");
+	glutCreateWindow("컴퓨터 그래픽스 : 장윤서 최민우");
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{

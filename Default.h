@@ -27,7 +27,6 @@ inline GLfloat RandFloat0_1()
 	uniform_real_distribution<float> dist(0.0f, 1.0f);
 	return dist(gen);
 }
-
 inline GLfloat RandFloat(float min, float max)
 {
 	random_device rd;
